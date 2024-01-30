@@ -8,15 +8,42 @@ class DoublyLinkedListNode {
 
 class DoublyLinkedList {
   constructor() {
-    // Your code here 
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
   }
 
   addToHead(val) {
-    // Your code here 
+    let newNode = new DoublyLinkedListNode(val);
+    if(!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } 
+    else {
+      let tempHead = this.head;
+      tempHead.prev = newNode;
+      this.head = newNode;
+      this.head.next = tempHead;
+    }
+    this.length++;
   }
 
   addToTail(val) {
-    // Your code here 
+    let newNode = new DoublyLinkedListNode(val);
+    if(!this.tail) {
+      this.head = newNode;
+      this.tail = newNode;
+    } 
+    else {
+      let current = this.tail;
+      while (current.next) {
+        current = current.next;
+      }
+      current.next = newNode;
+      newNode.prev = current;
+      this.tail = newNode;
+    }
+    this.length++;
   }
 
   // You can use this function to help debug
